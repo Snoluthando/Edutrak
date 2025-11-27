@@ -1,0 +1,295 @@
+/* ===== GENERAL STYLES ===== */
+body {
+  font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: "Merriweather", serif;
+}
+
+/* ===== NAVBAR ===== */
+.navbar { 
+  background-color: rgba(38, 81, 76, 1) !important;
+}
+
+.navbar .navbar-brand {
+  color: #000000 !important;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.navbar .nav-link {
+  color: rgba(255, 255, 255, 0.8) !important;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: #fff !important;
+}
+
+/* ===== MASTHEAD ===== */
+.masthead {
+  position: relative;
+  background: url("https://media.istockphoto.com/id/1363276509/photo/teacher-giving-computer-science-lecture-to-diverse-multiethnic-group-of-female-and-male.jpg?s=612x612&w=0&k=20&c=iHDI7pI98XJfh95nFw-wT9L9jYr0IzSBYB53riWOVsk=") no-repeat center center;
+  background-size: cover;
+  height: 100vh;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(255, 255, 255);
+}
+
+.masthead::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55); /* adjust darkness (0.3–0.6) */
+  z-index: 1;
+}
+
+.masthead .container {
+  position: relative;
+  z-index: 2; /* keeps your text above the overlay */
+}
+
+.masthead h1 {
+  font-size: 2.75rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  z-index: 1;
+  color: #ffffff;
+}
+
+.masthead p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  z-index: 1;
+}
+
+.masthead .btn-primary {
+  background-color: #26514c;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  transition: background-color 0.3s ease-in-out;
+  z-index: 1;
+}
+
+.masthead .btn-primary:hover {
+  background-color: #ffffff;
+}
+
+.masthead .col-lg-8.align-self-end {
+  margin-bottom: 15rem; /* adjust if needed */
+}
+
+.masthead .col-lg-8.align-self-baseline {
+  margin-top: 0; /* reset default spacing if needed */
+}
+.btn-outline-success {
+  color: #000000 !important;
+  border-color: #ffffff !important;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-outline-success:hover {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+
+
+/* ===== DIVIDER LINE ===== */
+.divider {
+  width: 60px;
+  height: 4px;
+  background-color: #26514c;
+  margin: 1.5rem auto;
+  border-radius: 5px;
+}
+
+.divider-light {
+  background-color: #26514c;
+}
+
+/* ===== ABOUT SECTION ===== */
+.page-section {
+  padding: 8rem 0;
+}
+
+.page-section.bg-primary {
+  background-color: #000000 !important;
+  color: #fbffff;
+}
+
+.page-section.bg-primary h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: " #145635";
+}
+
+.page-section.bg-primary p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.page-section.bg-primary .btn-light {
+  color: #000;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  padding: 1rem 2rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.page-section.bg-primary .btn-light:hover {
+  background-color: #26514c;
+}
+
+/* ===== SERVICES SECTION ===== */
+#services {
+  background-color: #26514c;
+  text-align: center;
+}
+#services h2 {
+  font-weight: 700;
+  color: #000000;
+}
+
+#services .mt-5 {
+  transition: transform 0.3s ease-in-out;
+}
+
+#services .mt-5:hover {
+  transform: translateY(-8px);
+  color: #ffffff
+}
+
+#services .text-primary {
+  color: #f0f0f0 !important;
+}
+
+.text-muted {
+  color: #000000 !important;
+}
+
+/* ===== BUTTONS ===== */
+.btn-xl {
+  padding: 1.25rem 2.5rem;
+  font-size: 1.25rem;
+  border-radius: 50px;
+
+}
+
+/* ===== LOGIN PAGE STYLING ===== */
+
+/* Full-page background */
+.login-body {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+              url("https://startbootstrap.github.io/startbootstrap-creative/assets/img/bg-masthead.jpg") no-repeat center center;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Centered container */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Glassmorphic login card */
+.login-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+/* White text fields */
+.login-card label {
+  color: #ffffff;
+}
+
+.login-card input {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #fff;
+}
+
+.login-card input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Button */
+.login-card button {
+  border: 2px solid #fff;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+.login-card button:hover {
+  background-color: #f4623a; /* your orange Creative theme color */
+  border-color: #f4623a;
+}
+
+/* Small text below */
+.login-card small a {
+  color: #f4623a;
+  text-decoration: none;
+}
+
+.login-card small a:hover {
+  text-decoration: underline;
+}
+
+
+
+/* Responsive dashboard */
+@media (max-width: 992px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 10px 20px;
+  }
+  .dashboard-card {
+    padding: 35px 0;
+  }
+}
+
+
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .masthead h1 {
+    font-size: 2rem;
+  }
+  .page-section {
+    padding: 5rem 0;
+  }
+} 
+

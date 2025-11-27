@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduTrak Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #26514c;
+      min-height: 100vh;
+    }
+
+  .sidebar {
+  width: 230px;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(8px);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
+}
+
+    .sidebar h3 {
+      color: white;
+      font-weight: 600;
+    }
+
+    .sidebar .nav-link {
+  color: #FFFFFF;
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 5px;
+}
+
+    .sidebar .nav-link:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    .sidebar .nav-link.active {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    .content {
+      flex-grow: 1;
+    }
+
+    .topbar {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 15px 30px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+ .profile {
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+  color: rgb(0, 0, 0);
+}
+
+.profile-circle {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #6f6969;
+  color: #000; 
+  display: flex;
+  justify-content: center;   
+  align-items: center;       
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.profile-name {
+  font-weight: 600;
+}
+
+.profile-email {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+
+    .logout-btn {
+   background: transparent;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-left: 20px;
+  }
+
+    .logout-btn:hover {
+  background-color: #801515;
+  color: #000;
+  transform: translateY(-2px);
+}
+
+    .welcome-section {
+      color: white;
+      margin-bottom: 30px;
+    }
+
+    .welcome-section h2 {
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .welcome-section p {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .dashboard-card {
+      background-color: #000000;
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s;
+      color: rgb(255, 255, 255);
+    }
+
+.dashboard-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-icon {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .card-content {
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+
+    .deadline-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    border-left: 4px solid #029665ac;
+    border-top: 2px  solid#029665ac;
+    display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .deadline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .deadline-name {
+      font-weight: 600;
+     font-size: 13px;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 5px;
+    }
+
+    .deadline-date {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .grade-display {
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .grade-number {
+      font-size: 72px;
+      font-weight: bold;
+      line-height: 1;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #ffffff, #029665ac);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .grade-label {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 15px;
+    }
+
+    .grade-breakdown {
+      text-align: left;
+      font-size: 13px;
+    }
+
+    .grade-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .uploaded-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      border-left: 3px solid #029665ac;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .uploaded-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .upload-info {
+      flex-grow: 1;
+    }
+
+    .upload-name {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+
+    .upload-date {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .upload-status {
+      background: rgba(81, 207, 102, 0.3);
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .notice-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      border-left: 3px solid #d80000;
+    }
+
+    .notice-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .notice-title {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .notice-text {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 5px;
+    }
+
+    .notice-time {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Scrollbar styling */
+    .card-content::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .card-content::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+    }
+
+    .card-content::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 3px;
+    }
+
+    .card-content::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="d-flex">
+    <nav class="sidebar">
+<!-- EduTrak Logo - Fixed Right-Side Cutoff -->
+<svg width="200" height="60" viewBox="0 0 230 60" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .logo-text { font-family: Arial, sans-serif; font-weight: bold; font-size: 28px; }
+    .logo-accent { fill: #029665; }
+    .logo-dark { fill: #26514c; }
+  </style>
+
+  <!-- K -->
+  <path d="M20 15 L20 45 L30 45 L30 25 L40 45 L50 45 L35 15 Z" fill="#029665"/>
+
+  <!-- E -->
+  <path d="M60 15 L60 45 L80 45 L80 35 L70 35 L70 15 Z" fill="#26514c"/>
+
+  <!-- U -->
+  <path d="M90 15 L90 25 L100 25 L100 15 Z M90 35 L90 45 L100 45 L100 35 Z" fill="#029665"/>
+
+  <!-- TEXT -->
+  <text x="110" y="38" class="logo-text logo-dark">Edu</text>
+  <text x="160" y="38" class="logo-text logo-accent">Trak</text>
+</svg>
+
+
+      <ul class="nav flex-column px-3">
+        <li class="nav-item"><a class="nav-link active" href="#">Main</a></li>
+        <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
+        <li class="nav-item"><a class="nav-link" href="uploads.html">Uploads</a></li>
+        <li class="nav-item"><a class="nav-link active" href="download.html">Downloads</a></li>
+        <li class="nav-item"><a class="nav-link" href="info.html">Student Information</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="content flex-grow-1">
+      <div class="topbar d-flex justify-content-end align-items-center px-4">
+        <div class="profile">
+          <div class="profile-circle" id="profileInitial">?</div>
+          <div class="profile-info">
+            <span class="profile-name" id="profileName">Loading...</span>
+            <span class="profile-email" id="profileEmail">Loading...</span>
+          </div>
+        </div>
+        <button class="logout-btn" id="logoutBtn">Logout</button>
+      </div>
+
+      <div class="container-fluid py-4">
+        <div class="welcome-section">
+          <h2 id="welcomeText">Welcome Back!</h2>
+          <p id="welcomeSubtext">Here's your dashboard overview</p>
+        </div>
+
+        <div class="row g-4">
+          <!-- DEADLINES CARD -->
+          <div class="col-md-6">
+            <div class="dashboard-card">
+              <div class="card-icon"></div>
+              <div class="card-title">Upcoming Deadlines</div>
+              <div class="card-content">
+                <div class="deadline-item">
+                  <div class="deadline-name">Web Dev Assignment</div>
+                  <div class="deadline-date">Due: Nov 30, 2025</div>
+                </div>
+                <div class="deadline-item">
+                  <div class="deadline-name">Database Project</div>
+                  <div class="deadline-date">Due: Dec 5, 2025</div>
+                </div>
+                <div class="deadline-item">
+                  <div class="deadline-name">Algorithm Analysis</div>
+                  <div class="deadline-date">Due: Dec 12, 2025</div>
+                </div>
+                <div class="deadline-item">
+                  <div class="deadline-name">Final Presentation</div>
+                  <div class="deadline-date">Due: Dec 18, 2025</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- GRADE CARD -->
+          <div class="col-md-6">
+            <div class="dashboard-card">
+              <div class="card-icon"></div>
+              <div class="card-title">Current Grade</div>
+              <div class="card-content">
+                <div class="grade-display">
+                  <div class="grade-number">78%</div>
+                  <div class="grade-label">Overall Average</div>
+                </div>
+                <div class="grade-breakdown">
+                  <div class="grade-item">
+                    <span>Assignments</span>
+                    <strong>82%</strong>
+                  </div>
+                  <div class="grade-item">
+                    <span>Quizzes</span>
+                    <strong>75%</strong>
+                  </div>
+                  <div class="grade-item">
+                    <span>Projects</span>
+                    <strong>88%</strong>
+                  </div>
+                  <div class="grade-item">
+                    <span>Participation</span>
+                    <strong>90%</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- UPLOADED CARD -->
+          <div class="col-md-6">
+            <div class="dashboard-card">
+              <div class="card-icon"></div>
+              <div class="card-title">Recent Uploads</div>
+              <div class="card-content">
+                <div class="uploaded-item">
+                  <div class="upload-info">
+                    <div class="upload-name">Assignment_3.pdf</div>
+                    <div class="upload-date">Nov 18, 2025</div>
+                  </div>
+                  <div class="upload-status">✓ Graded</div>
+                </div>
+                <div class="uploaded-item">
+                  <div class="upload-info">
+                    <div class="upload-name">Project_Code.zip</div>
+                    <div class="upload-date">Nov 15, 2025</div>
+                  </div>
+                  <div class="upload-status"> Pending</div>
+                </div>
+                <div class="uploaded-item">
+                  <div class="upload-info">
+                    <div class="upload-name">Lab_Report_5.docx</div>
+                    <div class="upload-date">Nov 12, 2025</div>
+                  </div>
+                  <div class="upload-status">✓ Graded</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- NOTICE CARD -->
+          <div class="col-md-6">
+            <div class="dashboard-card">
+              <div class="card-icon"></div>
+              <div class="card-title">Announcements</div>
+              <div class="card-content">
+                <div class="notice-item">
+                  <div class="notice-title">Class Canceled</div>
+                  <div class="notice-text">Friday's lecture moved to online format. Check email for Zoom link.</div>
+                  <div class="notice-time">2 hours ago</div>
+                </div>
+                <div class="notice-item">
+                  <div class="notice-title">New Study Material</div>
+                  <div class="notice-text">Module 4 slides now available in Resources section.</div>
+                  <div class="notice-time">1 day ago</div>
+                </div>
+                <div class="notice-item">
+                  <div class="notice-title">Exam Schedule</div>
+                  <div class="notice-text">Final exam dates published. Check Student Information page.</div>
+                  <div class="notice-time">3 days ago</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    if (!currentUser) {
+      alert(" Please log in to access the dashboard.");
+      window.location.href = "login.html";
+    } else {
+      const fullName = currentUser.fullName || "Student";
+      const studentNumber = currentUser.studentNumber;
+
+      const initial = fullName.charAt(0).toUpperCase();
+
+      document.getElementById("profileInitial").textContent = initial;
+      document.getElementById("profileName").textContent = fullName;
+      document.getElementById("profileEmail").textContent = `ID: ${studentNumber}`;
+      document.getElementById("welcomeText").textContent = `Welcome Back, ${fullName}!`;
+      document.getElementById("welcomeSubtext").textContent = `Student Number: ${studentNumber}`;
+    }
+
+    document.getElementById("logoutBtn").addEventListener("click", function() {
+      if (confirm("Are you sure you want to logout?")) {
+        localStorage.removeItem("currentUser");
+        alert(" Logged out successfully!");
+        window.location.href = "login.html";
+      }
+    });
+  </script>
+</body>
+</html>

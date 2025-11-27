@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduTrak – Contact Us</title>
+
+  <!-- REQUIRED: BOOTSTRAP -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- MAIN STYLES -->
+  <style>
+    /* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* GLOBAL */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #26514c;
+  min-height: 100vh;
+  color: white;
+}
+
+.content {
+  flex-grow: 1;
+  padding-bottom: 50px;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 230px;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(8px);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.sidebar h3 {
+  color: white;
+  font-weight: 600;
+}
+
+.sidebar .nav-link {
+  color: #FFFFFF;
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 5px;
+}
+
+.sidebar .nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.sidebar .nav-link.active {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+/* TOPBAR */
+.topbar {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 15px 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  color: white;
+  gap: 10px;
+}
+
+.profile-circle {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-weight: 700;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.profile-email {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+}
+
+/* BUTTONS */
+.logout-btn {
+  background: transparent;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #801515;
+  color: #000;
+  transform: translateY(-2px);
+}
+
+/* CARDS (Global usable for all pages) */
+.dashboard-card {
+  background-color: #000000;
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s;
+  color: rgb(255, 255, 255);
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+/* UPLOAD + DOWNLOAD LIST ITEMS */
+.uploaded-item, .download-item {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border-left: 3px solid #029665ac;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.upload-info, .download-info {
+  flex-grow: 1;
+}
+
+.upload-name, .download-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.upload-date, .download-date {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Status badges */
+.upload-status, .download-status {
+  background: rgba(81, 207, 102, 0.3);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+  </style>
+</head>
+<body>
+
+<div class="d-flex">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <!-- EduTrak Logo - Fixed Right-Side Cutoff -->
+<svg width="200" height="60" viewBox="0 0 230 60" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .logo-text { font-family: Arial, sans-serif; font-weight: bold; font-size: 28px; }
+    .logo-accent { fill: #029665; }
+    .logo-dark { fill: #26514c; }
+  </style>
+
+  <!-- K -->
+  <path d="M20 15 L20 45 L30 45 L30 25 L40 45 L50 45 L35 15 Z" fill="#029665"/>
+
+  <!-- E -->
+  <path d="M60 15 L60 45 L80 45 L80 35 L70 35 L70 15 Z" fill="#26514c"/>
+
+  <!-- U -->
+  <path d="M90 15 L90 25 L100 25 L100 15 Z M90 35 L90 45 L100 45 L100 35 Z" fill="#029665"/>
+
+  <!-- TEXT -->
+  <text x="110" y="38" class="logo-text logo-dark">Edu</text>
+  <text x="160" y="38" class="logo-text logo-accent">Trak</text>
+</svg>
+    <ul class="nav flex-column px-3">
+      <li class="nav-item"><a class="nav-link" href="Dashboard.html">Main</a></li>
+      <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
+      <li class="nav-item"><a class="nav-link" href="upload.html">Uploads</a></li>
+      <li class="nav-item"><a class="nav-link active" href="download.html">Downloads</a></li>
+      <li class="nav-item"><a class="nav-link" href="info.html">Student Information</a></li>
+      <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div class="content flex-grow-1">
+
+    <!-- TOPBAR -->
+    <div class="topbar d-flex justify-content-end align-items-center px-4">
+      <div class="profile">
+        <div class="profile-circle" id="profileInitial">?</div>
+        <div class="profile-info">
+          <span class="profile-name" id="profileName">Loading...</span>
+          <span class="profile-email" id="profileEmail">Loading...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE CONTENT -->
+    <div class="container-fluid py-4 text-white">
+      <h2 class="mb-3">📞 Contact Us</h2>
+
+      <form id="contactForm" class="mt-4">
+        <input type="text" class="form-control mb-3" placeholder="Your Name" required>
+        <input type="email" class="form-control mb-3" placeholder="Your Email" required>
+        <textarea class="form-control mb-3" rows="4" placeholder="Your Message" required></textarea>
+
+        <button class="logout-btn" type="submit">Send Message</button>
+      </form>
+
+      <div class="mt-4 dashboard-card p-3">
+        <h5 class="mb-2">School Contact Information</h5>
+        <p><strong>Email:</strong> info@edutrak.co.za</p>
+        <p><strong>Phone:</strong> +27 82 123 4567</p>
+        <p><strong>Address:</strong> 101 Learning Avenue, Johannesburg, South Africa</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// Load logged-in user details
+const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+if (currentUser) {
+  document.getElementById("profileName").textContent = currentUser.fullName;
+  document.getElementById("profileEmail").textContent = "ID: " + currentUser.studentNumber;
+  document.getElementById("profileInitial").textContent = currentUser.fullName.charAt(0).toUpperCase();
+}
+
+// Contact form message
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  alert("Message sent successfully!");
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduTrak – Student Information</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* GLOBAL */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #26514c;
+  min-height: 100vh;
+  color: white;
+}
+
+.content {
+  flex-grow: 1;
+  padding-bottom: 50px;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 230px;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(8px);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.sidebar h3 {
+  color: white;
+  font-weight: 600;
+}
+
+.sidebar .nav-link {
+  color: #FFFFFF;
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 5px;
+}
+
+.sidebar .nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.sidebar .nav-link.active {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+/* TOPBAR */
+.topbar {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 15px 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  color: white;
+  gap: 10px;
+}
+
+.profile-circle {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-weight: 700;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.profile-email {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+}
+
+/* BUTTONS */
+.logout-btn {
+  background: transparent;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #801515;
+  color: #000;
+  transform: translateY(-2px);
+}
+
+/* CARDS (Global usable for all pages) */
+.dashboard-card {
+  background-color: #000000;
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s;
+  color: rgb(255, 255, 255);
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+/* UPLOAD + DOWNLOAD LIST ITEMS */
+.uploaded-item, .download-item {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border-left: 3px solid #029665ac;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.upload-info, .download-info {
+  flex-grow: 1;
+}
+
+.upload-name, .download-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.upload-date, .download-date {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Status badges */
+.upload-status, .download-status {
+  background: rgba(81, 207, 102, 0.3);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+</style>
+</head>
+<body>
+
+<div class="d-flex">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <!-- EduTrak Logo - Fixed Right-Side Cutoff -->
+<svg width="200" height="60" viewBox="0 0 230 60" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .logo-text { font-family: Arial, sans-serif; font-weight: bold; font-size: 28px; }
+    .logo-accent { fill: #029665; }
+    .logo-dark { fill: #26514c; }
+  </style>
+
+  <!-- K -->
+  <path d="M20 15 L20 45 L30 45 L30 25 L40 45 L50 45 L35 15 Z" fill="#029665"/>
+
+  <!-- E -->
+  <path d="M60 15 L60 45 L80 45 L80 35 L70 35 L70 15 Z" fill="#26514c"/>
+
+  <!-- U -->
+  <path d="M90 15 L90 25 L100 25 L100 15 Z M90 35 L90 45 L100 45 L100 35 Z" fill="#029665"/>
+
+  <!-- TEXT -->
+  <text x="110" y="38" class="logo-text logo-dark">Edu</text>
+  <text x="160" y="38" class="logo-text logo-accent">Trak</text>
+</svg>
+    <ul class="nav flex-column px-3">
+      <li class="nav-item"><a class="nav-link" href="Dashboard.html">Main</a></li>
+      <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
+      <li class="nav-item"><a class="nav-link" href="uploads.html">Uploads</a></li>
+      <li class="nav-item"><a class="nav-link active" href="download.html">Downloads</a></li>
+      <li class="nav-item"><a class="nav-link active" href="info.html">Student Information</a></li>
+      <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="content flex-grow-1">
+
+    <!-- TOPBAR -->
+    <div class="topbar d-flex justify-content-end align-items-center px-4">
+      <div class="profile">
+        <div class="profile-circle" id="profileInitial">?</div>
+        <div class="profile-info">
+          <span class="profile-name" id="profileName">Loading...</span>
+          <span class="profile-email" id="profileEmail">Loading...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE BODY -->
+    <div class="container-fluid py-4 text-white">
+
+      <!-- ❤ PERSONAL INFO DISPLAY -->
+      <h2 class="mb-3">Personal Information</h2>
+      <div class="dashboard-card text-start p-4">
+        <p><strong>Full Name:</strong> <span id="pFullName"></span></p>
+        <p><strong>ID Number:</strong> <span id="pIDNumber"></span></p>
+        <p><strong>Date of Birth:</strong> <span id="pDOB"></span></p>
+        <p><strong>Email:</strong> <span id="pEmail"></span></p>
+      </div>
+
+      <!-- ❤ EDIT PERSONAL INFO -->
+      <h3 class="mt-4">Edit Personal Information</h3>
+      <div class="dashboard-card p-4">
+        <form id="editForm">
+          <label class="form-label">Full Name</label>
+          <input class="form-control mb-2" id="editFullName">
+
+          <label class="form-label">ID Number</label>
+          <input class="form-control mb-2" id="editIDNumber">
+
+          <label class="form-label">Date of Birth</label>
+          <input type="date" class="form-control mb-2" id="editDOB">
+
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control mb-3" id="editEmail">
+
+          <button class="btn btn-primary w-100">Save Changes</button>
+        </form>
+      </div>
+
+      <!-- ❤ PASSWORD UPDATE -->
+      <h3 class="mt-4">Update Password</h3>
+      <div class="dashboard-card p-4">
+        <form id="passwordForm">
+          <label class="form-label">Current Password</label>
+          <input type="password" class="form-control mb-2" id="currentPass">
+
+          <label class="form-label">New Password</label>
+          <input type="password" class="form-control mb-2" id="newPass">
+
+          <label class="form-label">Confirm New Password</label>
+          <input type="password" class="form-control mb-3" id="confirmPass">
+
+          <button class="btn btn-warning w-100">Update Password</button>
+        </form>
+      </div>
+
+      <!-- ❤ STUDENT INFORMATION -->
+      <h2 class="mt-5 mb-3">Student Information</h2>
+      <div class="dashboard-card text-start p-4">
+        <p><strong>Full Name:</strong> <span id="sFullName"></span></p>
+        <p><strong>Preferred Name:</strong> <span id="sPrefName"></span></p>
+
+        <!-- Username Read-Only -->
+        <p><strong>Student Number (Username):</strong> 
+          <span id="sStudentNumber"></span> 
+          <small class="text-danger">(Cannot be changed)</small>
+        </p>
+
+        <p><strong>Email:</strong> <span id="sEmail"></span></p>
+        <p><strong>Registered:</strong> <span id="sDate"></span></p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ========================= JS ========================= -->
+<script>
+// 🔒 AUTH CHECK
+if (!localStorage.getItem("currentUser")) {
+  window.location.href = "login.html";
+}
+
+// 📦 Retrieve from localStorage
+let user = JSON.parse(localStorage.getItem("currentUser"));
+
+// 📦 Retrieve from IndexedDB
+function loadFromIndexedDB() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open("EduTrakDB", 1);
+
+    request.onsuccess = () => {
+      const db = request.result;
+      const tx = db.transaction("students", "readonly");
+      const store = tx.objectStore("students");
+
+      const query = store.get(user.studentNumber);
+
+      query.onsuccess = () => resolve(query.result || user);
+      query.onerror = () => resolve(user);
+    };
+
+    request.onerror = () => resolve(user);
+  });
+}
+
+(async () => {
+  user = await loadFromIndexedDB();
+
+  // TOPBAR
+  profileName.textContent = user.fullName;
+  profileEmail.textContent = "ID: " + user.studentNumber;
+  profileInitial.textContent = user.fullName.charAt(0);
+
+  // PERSONAL INFO
+  pFullName.textContent = user.fullName || "Not provided";
+  pIDNumber.textContent = user.idNumber || "Not provided";
+  pDOB.textContent = user.dob || "Not provided";
+  pEmail.textContent = user.email || "Not provided";
+
+  // FILL EDIT FORM
+  editFullName.value = user.fullName || "";
+  editIDNumber.value = user.idNumber || "";
+  editDOB.value = user.dob || "";
+  editEmail.value = user.email || "";
+
+  // STUDENT INFO
+  sFullName.textContent = user.fullName;
+  sPrefName.textContent = user.preferredName || "Not set";
+  sStudentNumber.textContent = user.studentNumber;
+  sEmail.textContent = user.email || "Not provided";
+  sDate.textContent = user.dateRegistered || "Unknown";
+})();
+
+
+// ======================= SAVE PERSONAL INFO =======================
+document.getElementById("editForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  user.fullName = editFullName.value;
+  user.idNumber = editIDNumber.value;
+  user.dob = editDOB.value;
+  user.email = editEmail.value;
+
+  localStorage.setItem("currentUser", JSON.stringify(user));
+  alert("Information updated successfully!");
+  location.reload();
+});
+
+
+// ======================= PASSWORD UPDATE =======================
+passwordForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  if (currentPass.value !== user.password) {
+    return alert("Incorrect current password");
+  }
+
+  if (newPass.value !== confirmPass.value) {
+    return alert("Passwords do not match");
+  }
+
+  user.password = newPass.value;
+  localStorage.setItem("currentUser", JSON.stringify(user));
+
+  alert("Password updated!");
+  passwordForm.reset();
+});
+</script>
+
+</body>
+</html>
